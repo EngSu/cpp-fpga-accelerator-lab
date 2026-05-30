@@ -1,32 +1,57 @@
 # C++ FPGA Accelerator Lab
 
-A hands-on C++ project focused on hardware-aware software design and performance-oriented systems programming for FPGA and AI acceleration concepts.
+A hands-on C++ systems project focused on hardware-aware software design and performance-oriented experiments inspired by FPGA and AI accelerator architectures.
 
-This repository explores how software behavior relates to hardware constraints such as memory bandwidth, cache alignment, and data movement costs using modern C++ as a learning and prototyping tool.
+This repository studies how low-level software decisions affect performance characteristics such as memory bandwidth, cache behavior, alignment, and data movement costs using modern C++.
 
 ---
 
 ## 🎯 Project Goals & Architecture
 
-This project focuses on hardware-software co-design thinking through practical C++ implementations and experiments.
+This project is structured as a gradual exploration of hardware–software co-design through practical implementations and benchmarks.
 
-The work is structured in stages:
+### 1. Memory Management Experiments (Implemented)
 
-### 1. Memory Management Experiments (Current)
-Implementation of custom memory pool allocators with cache-line alignment to study deterministic allocation and low-overhead memory handling.
+Custom memory pool allocator with cache-line alignment and free-list design.  
+Focus: deterministic allocation, low overhead, and predictable memory reuse behavior.
 
-### 2. Architectural Simulation (Planned)
-Exploration of compute models such as matrix multiplication engines and systolic array behavior using C++ simulation techniques.
+### 2. Architectural Simulation (In Progress)
+
+C++-based exploration of compute patterns such as matrix multiplication and systolic array-style data flow models.
 
 ### 3. Runtime Concepts (Planned)
-Initial exploration of data movement concepts inspired by DMA-like transfers and accelerator-style execution models.
+
+Early-stage investigation of accelerator-like execution models, including DMA-inspired data movement and scheduling concepts.
 
 ---
 
 ## 📌 Project Note
 
-This project is evolving incrementally. Each section will be updated as new implementations are completed and validated.
+This repository is actively evolving. Each stage is implemented incrementally and validated through benchmarks and small-scale experiments.
+
+---
 
 ## 💡 Project Philosophy
 
-This project uses C++ as a practical tool for exploring systems-level thinking in the context of FPGA and AI accelerator architectures.
+## C++ is used here as a systems modeling tool to understand how software structure influences hardware-level performance behavior in FPGA and AI accelerator contexts.
+
+## 📊 Benchmark Results
+
+MemoryPool shows ~3.2× speedup compared to malloc/free for 1M fixed-size allocations.
+
+### Key Observations:
+
+- O(1) allocation and deallocation
+- Predictable free-list behavior
+- Reduced allocator overhead compared to general-purpose malloc
+
+These results demonstrate the benefit of deterministic memory allocation for systems-level and accelerator-style workloads.
+
+## 📊 Benchmark Results
+
+| Allocator   | Time (1M ops) |
+| ----------- | ------------- |
+| MemoryPool  | 17 ms         |
+| malloc/free | 55 ms         |
+
+**Speedup:** ~3.2×
