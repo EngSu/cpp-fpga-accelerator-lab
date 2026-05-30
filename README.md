@@ -33,7 +33,9 @@ This repository is actively evolving. Each stage is implemented incrementally an
 
 ## 💡 Project Philosophy
 
-## C++ is used here as a systems modeling tool to understand how software structure influences hardware-level performance behavior in FPGA and AI accelerator contexts.
+C++ is used here as a systems modeling tool to understand how software structure influences hardware-level performance behavior in FPGA and AI accelerator contexts.
+
+---
 
 ## 📊 Benchmark Results
 
