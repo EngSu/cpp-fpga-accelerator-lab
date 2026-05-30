@@ -1,39 +1,23 @@
-<<<<<<< HEAD
 #include <iostream>
 #include "memory_pool.hpp"
 
-int main() {
-    MemoryPool pool(64, 5);
-
-    void* a = pool.allocate();
-    void* b = pool.allocate();
-    void* c = pool.allocate();
-
-    pool.deallocate(a);
-    pool.deallocate(b);
-    pool.deallocate(c);
-
-    std::cout << "Allocator working\n";
-
-    return 0;
-}
-=======
-#include <iostream>
-#include "memory_pool.h"
-
 int main()
 {
+    // Creating 3 blocks of 64 bytes each
     MemoryPool pool(64, 3);
 
     void *a = pool.allocate();
     void *b = pool.allocate();
     void *c = pool.allocate();
 
+    // Free the first block ('a')
     pool.deallocate(a);
-    void *d = pool.allocate(); // should reuse 'a'
 
-    std::cout << "a: " << a << "\n";
-    std::cout << "d: " << d << "\n";
+    // This next allocation should instantly pick up the block we just freed
+    void *d = pool.allocate();
+
+    std::cout << "Address of a: " << a << "\n";
+    std::cout << "Address of d: " << d << "\n";
 
     if (a == d)
     {
@@ -44,6 +28,10 @@ int main()
         std::cout << "REUSE FAIL\n";
     }
 
+    // Clean up remaining allocations before ending
+    pool.deallocate(b);
+    pool.deallocate(c);
+    pool.deallocate(d);
+
     return 0;
 }
->>>>>>> 7384dd9 (Improve memory pool allocator correctness and reuse test)
